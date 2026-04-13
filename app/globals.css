@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: 'Familjen Grotesk', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --font-label: 'Bricolage Grotesque', sans-serif;
+  --color-orange: #D54B26;
+  --color-dark: #111111;
+  --color-cream: #FFFBEE;
+  --color-green: #608539;
+  --color-gray: #666666;
+  --color-light-gray: #BBBBBB;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  overflow-x: hidden;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-label {
+  font-family: var(--font-label);
+}
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(209, 211, 223, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209, 211, 223, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
