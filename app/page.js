@@ -437,16 +437,16 @@ function IndustriesSection() {
    ═══════════════════════════════════════════════════════ */
 function GlobalPresenceSection() {
   return (
-    <section className="w-full bg-[#111]" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
+    <section className="w-full" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
       <div className="max-w-[1600px] mx-auto" style={{ padding: '0 clamp(20px, 8.3vw, 160px)' }}>
         <div className="flex flex-col lg:flex-row items-center" style={{ gap: 'clamp(20px, 3vw, 56px)' }}>
           <div className="w-full lg:w-[45%]">
-            <h2 className="font-heading font-medium text-white leading-[1.1]" style={{ fontSize: 'clamp(20px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
+            <h2 className="font-heading font-medium text-[#111] leading-[1.1]" style={{ fontSize: 'clamp(20px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
               A Diversified Technology Group.
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 0.7vw, 14px)', marginBottom: 'clamp(16px, 1.5vw, 28px)' }}>
               {[1, 2, 3].map((i) => (
-                <p key={i} className="font-body text-[#999] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+                <p key={i} className="font-body text-[#666] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
                   We are a global holding company operating at the intersection of agentic AI, industrial automation, and strategic advisory. Across eight specialized divisions, we don&apos;t just build software—we engineer the unified ecosystems that power the world&apos;s most complex organizations.
                 </p>
               ))}
@@ -477,8 +477,11 @@ function InvestorSection() {
     'Global market expansion opportunities',
   ];
 
+  const circleSize = 'clamp(280px, 24vw, 460px)';
+  const overlap = 'clamp(-50px, -4.2vw, -80px)';
+
   return (
-    <section className="w-full" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
+    <section className="w-full overflow-hidden" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
       <div className="max-w-[1600px] mx-auto" style={{ padding: '0 clamp(20px, 8.3vw, 160px)' }}>
         <div className="text-center" style={{ marginBottom: 'clamp(24px, 2.5vw, 48px)' }}>
           <h2 className="font-heading font-medium text-[#111] leading-[1.1]" style={{ fontSize: 'clamp(20px, 2.71vw, 52px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
@@ -489,66 +492,95 @@ function InvestorSection() {
           </p>
         </div>
 
-        {/* Venn Diagram - Intersecting Circles */}
-        <div className="relative flex justify-center items-center" style={{ minHeight: 'clamp(300px, 26vw, 500px)' }}>
-          {/* SVG Background for circles with gradients */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              {/* Left circle gradient - subtle blue/gray */}
-              <radialGradient id="leftGrad" cx="40%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#e8edf5" stopOpacity="0.9" />
-                <stop offset="60%" stopColor="#d5dce8" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#c0c9d8" stopOpacity="0.5" />
-              </radialGradient>
-              {/* Right circle gradient - subtle blue/gray */}
-              <radialGradient id="rightGrad" cx="60%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#e8edf5" stopOpacity="0.9" />
-                <stop offset="60%" stopColor="#d5dce8" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#c0c9d8" stopOpacity="0.5" />
-              </radialGradient>
-              {/* Intersection gradient - orange/copper */}
-              <linearGradient id="interGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#D54B26" stopOpacity="0.35" />
-                <stop offset="50%" stopColor="#e8774f" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#D54B26" stopOpacity="0.35" />
-              </linearGradient>
-            </defs>
-            {/* Left ellipse */}
-            <ellipse cx="330" cy="230" rx="260" ry="215" fill="url(#leftGrad)" stroke="#c0c9d8" strokeWidth="1.5" />
-            {/* Right ellipse */}
-            <ellipse cx="570" cy="230" rx="260" ry="215" fill="url(#rightGrad)" stroke="#c0c9d8" strokeWidth="1.5" />
-            {/* Intersection overlay */}
-            <clipPath id="clipLeft"><ellipse cx="330" cy="230" rx="260" ry="215" /></clipPath>
-            <ellipse cx="570" cy="230" rx="260" ry="215" fill="url(#interGrad)" clipPath="url(#clipLeft)" />
-          </svg>
-
-          {/* Content positioned over circles */}
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full" style={{ maxWidth: 'clamp(500px, 47vw, 900px)' }}>
-            {/* Left - Investor Value */}
-            <div className="flex-1 flex flex-col items-center text-center" style={{ padding: 'clamp(16px, 2vw, 40px) clamp(10px, 1.5vw, 30px)' }}>
+        {/* Desktop: side-by-side overlapping circles */}
+        <div className="hidden md:flex justify-center items-center relative">
+          {/* Left Circle */}
+          <div
+            className="relative rounded-full border border-[#D54B26]/20 flex flex-col items-center justify-center text-center z-10"
+            style={{
+              width: circleSize,
+              height: circleSize,
+              background: 'radial-gradient(circle at 40% 50%, rgba(232,237,245,0.95) 0%, rgba(213,220,232,0.7) 60%, rgba(192,201,216,0.4) 100%)',
+            }}
+          >
+            <div className="flex flex-col items-center" style={{ padding: 'clamp(14px, 1.5vw, 28px)', transform: 'translateX(clamp(-8px, -0.6vw, -12px))' }}>
               <h3 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(16px, 1.56vw, 30px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
                 Investor Value
               </h3>
-              <ul className="font-body text-[#555] leading-[1.7] text-left" style={{ fontSize: 'clamp(8px, 0.63vw, 12px)', marginBottom: 'clamp(8px, 0.7vw, 14px)' }}>
+              <ul className="font-body text-[#555] leading-[1.75] text-left" style={{ fontSize: 'clamp(9px, 0.63vw, 12px)', marginBottom: 'clamp(8px, 0.7vw, 14px)' }}>
                 {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
               </ul>
-              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium hover:bg-[#D54B26] hover:text-white transition-colors" style={{ padding: 'clamp(4px, 0.35vw, 7px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(9px, 0.63vw, 12px)' }}>
+              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium hover:bg-[#D54B26] hover:text-white transition-colors rounded-sm" style={{ padding: 'clamp(4px, 0.35vw, 7px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(9px, 0.63vw, 12px)' }}>
                 Explore More
                 <ArrowRight style={{ width: 'clamp(10px, 0.63vw, 12px)', height: 'clamp(10px, 0.63vw, 12px)' }} />
               </button>
             </div>
+          </div>
 
-            {/* Right - Strategic Partnerships */}
-            <div className="flex-1 flex flex-col items-center text-center" style={{ padding: 'clamp(16px, 2vw, 40px) clamp(10px, 1.5vw, 30px)' }}>
+          {/* Right Circle — overlaps left */}
+          <div
+            className="relative rounded-full border border-[#D54B26]/20 flex flex-col items-center justify-center text-center z-10"
+            style={{
+              width: circleSize,
+              height: circleSize,
+              marginLeft: overlap,
+              background: 'radial-gradient(circle at 60% 50%, rgba(232,237,245,0.95) 0%, rgba(213,220,232,0.7) 60%, rgba(192,201,216,0.4) 100%)',
+            }}
+          >
+            <div className="flex flex-col items-center" style={{ padding: 'clamp(14px, 1.5vw, 28px)', transform: 'translateX(clamp(8px, 0.6vw, 12px))' }}>
               <h3 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(14px, 1.46vw, 28px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
                 Strategic Partnerships
               </h3>
-              <ul className="font-body text-[#555] leading-[1.7] text-left" style={{ fontSize: 'clamp(8px, 0.63vw, 12px)', marginBottom: 'clamp(8px, 0.7vw, 14px)' }}>
+              <ul className="font-body text-[#555] leading-[1.75] text-left" style={{ fontSize: 'clamp(9px, 0.63vw, 12px)', marginBottom: 'clamp(8px, 0.7vw, 14px)' }}>
                 {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
               </ul>
-              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium hover:bg-[#D54B26] hover:text-white transition-colors" style={{ padding: 'clamp(4px, 0.35vw, 7px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(9px, 0.63vw, 12px)' }}>
+              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium hover:bg-[#D54B26] hover:text-white transition-colors rounded-sm" style={{ padding: 'clamp(4px, 0.35vw, 7px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(9px, 0.63vw, 12px)' }}>
                 Explore More
                 <ArrowRight style={{ width: 'clamp(10px, 0.63vw, 12px)', height: 'clamp(10px, 0.63vw, 12px)' }} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: stacked circles with vertical overlap */}
+        <div className="flex md:hidden flex-col items-center relative">
+          {/* Top Circle */}
+          <div
+            className="relative rounded-full border border-[#D54B26]/20 flex flex-col items-center justify-center text-center z-10"
+            style={{
+              width: '300px',
+              height: '300px',
+              background: 'radial-gradient(circle at 50% 40%, rgba(232,237,245,0.95) 0%, rgba(213,220,232,0.7) 60%, rgba(192,201,216,0.4) 100%)',
+            }}
+          >
+            <div className="flex flex-col items-center gap-2 px-8" style={{ transform: 'translateY(-8px)' }}>
+              <h3 className="font-heading font-semibold text-[#111] text-[20px] leading-tight">Investor Value</h3>
+              <ul className="font-body text-[#555] text-[11px] leading-[1.7] text-left">
+                {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
+              </ul>
+              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium text-[11px] px-3 py-1 rounded-sm hover:bg-[#D54B26] hover:text-white transition-colors">
+                Explore More <ArrowRight size={10} />
+              </button>
+            </div>
+          </div>
+
+          {/* Bottom Circle — overlaps top */}
+          <div
+            className="relative rounded-full border border-[#D54B26]/20 flex flex-col items-center justify-center text-center z-10"
+            style={{
+              width: '300px',
+              height: '300px',
+              marginTop: '-50px',
+              background: 'radial-gradient(circle at 50% 60%, rgba(232,237,245,0.95) 0%, rgba(213,220,232,0.7) 60%, rgba(192,201,216,0.4) 100%)',
+            }}
+          >
+            <div className="flex flex-col items-center gap-2 px-8" style={{ transform: 'translateY(8px)' }}>
+              <h3 className="font-heading font-semibold text-[#111] text-[20px] leading-tight">Strategic Partnerships</h3>
+              <ul className="font-body text-[#555] text-[11px] leading-[1.7] text-left">
+                {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
+              </ul>
+              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium text-[11px] px-3 py-1 rounded-sm hover:bg-[#D54B26] hover:text-white transition-colors">
+                Explore More <ArrowRight size={10} />
               </button>
             </div>
           </div>
