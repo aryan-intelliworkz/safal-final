@@ -437,30 +437,27 @@ function IndustriesSection() {
    ═══════════════════════════════════════════════════════ */
 function GlobalPresenceSection() {
   return (
-    <section className="w-full" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
+    <section className="w-full bg-[#111]" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
       <div className="max-w-[1600px] mx-auto" style={{ padding: '0 clamp(20px, 8.3vw, 160px)' }}>
-        <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(20px, 3vw, 56px)' }}>
+        <div className="flex flex-col lg:flex-row items-center" style={{ gap: 'clamp(20px, 3vw, 56px)' }}>
           <div className="w-full lg:w-[45%]">
-            <h2 className="font-heading font-medium text-[#111] leading-[1.1]" style={{ fontSize: 'clamp(20px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
+            <h2 className="font-heading font-medium text-white leading-[1.1]" style={{ fontSize: 'clamp(20px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
               A Diversified Technology Group.
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 0.7vw, 14px)', marginBottom: 'clamp(16px, 1.5vw, 28px)' }}>
               {[1, 2, 3].map((i) => (
-                <p key={i} className="font-body text-[#666] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+                <p key={i} className="font-body text-[#999] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
                   We are a global holding company operating at the intersection of agentic AI, industrial automation, and strategic advisory. Across eight specialized divisions, we don&apos;t just build software—we engineer the unified ecosystems that power the world&apos;s most complex organizations.
                 </p>
               ))}
             </div>
-            <button className="inline-flex items-center gap-2 bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 20px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
+            <button className="inline-flex items-center gap-2 bg-[#D54B26] text-white font-body hover:bg-[#c04020] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 20px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
               Visit our Product
               <ArrowRight style={{ width: 'clamp(12px, 0.73vw, 14px)', height: 'clamp(12px, 0.73vw, 14px)' }} />
             </button>
           </div>
-          <div className="w-full lg:w-[55%] relative" style={{ minHeight: 'clamp(250px, 24vw, 450px)' }}>
-            <Image src="/images/global-presence.png" alt="Global Presence" fill className="object-contain" />
-            <div className="absolute bg-[#D54B26] text-white font-body font-medium" style={{ top: '35%', left: '10%', fontSize: 'clamp(11px, 0.78vw, 15px)', padding: 'clamp(4px, 0.35vw, 6px) clamp(8px, 0.7vw, 14px)' }}>USA</div>
-            <div className="absolute bg-[#D54B26] text-white font-body font-medium" style={{ top: '50%', right: '8%', fontSize: 'clamp(11px, 0.78vw, 15px)', padding: 'clamp(4px, 0.35vw, 6px) clamp(8px, 0.7vw, 14px)' }}>India</div>
-            <div className="absolute bg-[#D54B26] text-white font-body font-medium" style={{ top: '30%', right: '15%', fontSize: 'clamp(11px, 0.78vw, 15px)', padding: 'clamp(4px, 0.35vw, 6px) clamp(8px, 0.7vw, 14px)' }}>UAE</div>
+          <div className="w-full lg:w-[55%] relative" style={{ minHeight: 'clamp(280px, 28vw, 540px)' }}>
+            <Image src="/images/globe-img.png" alt="Global Presence" fill className="object-contain" />
           </div>
         </div>
       </div>
@@ -483,7 +480,7 @@ function InvestorSection() {
   return (
     <section className="w-full" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
       <div className="max-w-[1600px] mx-auto" style={{ padding: '0 clamp(20px, 8.3vw, 160px)' }}>
-        <div className="text-center" style={{ marginBottom: 'clamp(20px, 2vw, 38px)' }}>
+        <div className="text-center" style={{ marginBottom: 'clamp(24px, 2.5vw, 48px)' }}>
           <h2 className="font-heading font-medium text-[#111] leading-[1.1]" style={{ fontSize: 'clamp(20px, 2.71vw, 52px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
             Where investor confidence meets partner potential
           </h2>
@@ -492,20 +489,69 @@ function InvestorSection() {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-center items-center" style={{ gap: 'clamp(16px, 1.8vw, 34px)' }}>
-          {[{ title: 'Investor Value', titleSize: 'clamp(18px, 1.77vw, 34px)' }, { title: 'Strategic Partnerships', titleSize: 'clamp(16px, 1.67vw, 32px)' }].map((card) => (
-            <div key={card.title} className="rounded-full border-2 border-[#D54B26]/25 flex items-center justify-center" style={{ width: 'clamp(220px, 19.3vw, 370px)', height: 'clamp(220px, 19.3vw, 370px)', padding: 'clamp(14px, 1.3vw, 26px)' }}>
-              <div className="text-center">
-                <h3 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: card.titleSize, marginBottom: 'clamp(6px, 0.4vw, 8px)' }}>{card.title}</h3>
-                <ul className="font-body text-[#666] leading-[1.8] text-left" style={{ fontSize: 'clamp(9px, 0.68vw, 13px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
-                  {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
-                </ul>
-                <button className="bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(4px, 0.35vw, 6px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(10px, 0.73vw, 14px)' }}>
-                  Explore More
-                </button>
-              </div>
+        {/* Venn Diagram - Intersecting Circles */}
+        <div className="relative flex justify-center items-center" style={{ minHeight: 'clamp(300px, 26vw, 500px)' }}>
+          {/* SVG Background for circles with gradients */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              {/* Left circle gradient - subtle blue/gray */}
+              <radialGradient id="leftGrad" cx="40%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#e8edf5" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="#d5dce8" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#c0c9d8" stopOpacity="0.5" />
+              </radialGradient>
+              {/* Right circle gradient - subtle blue/gray */}
+              <radialGradient id="rightGrad" cx="60%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#e8edf5" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="#d5dce8" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#c0c9d8" stopOpacity="0.5" />
+              </radialGradient>
+              {/* Intersection gradient - orange/copper */}
+              <linearGradient id="interGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#D54B26" stopOpacity="0.35" />
+                <stop offset="50%" stopColor="#e8774f" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#D54B26" stopOpacity="0.35" />
+              </linearGradient>
+            </defs>
+            {/* Left ellipse */}
+            <ellipse cx="330" cy="230" rx="260" ry="215" fill="url(#leftGrad)" stroke="#c0c9d8" strokeWidth="1.5" />
+            {/* Right ellipse */}
+            <ellipse cx="570" cy="230" rx="260" ry="215" fill="url(#rightGrad)" stroke="#c0c9d8" strokeWidth="1.5" />
+            {/* Intersection overlay */}
+            <clipPath id="clipLeft"><ellipse cx="330" cy="230" rx="260" ry="215" /></clipPath>
+            <ellipse cx="570" cy="230" rx="260" ry="215" fill="url(#interGrad)" clipPath="url(#clipLeft)" />
+          </svg>
+
+          {/* Content positioned over circles */}
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full" style={{ maxWidth: 'clamp(500px, 47vw, 900px)' }}>
+            {/* Left - Investor Value */}
+            <div className="flex-1 flex flex-col items-center text-center" style={{ padding: 'clamp(16px, 2vw, 40px) clamp(10px, 1.5vw, 30px)' }}>
+              <h3 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(16px, 1.56vw, 30px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
+                Investor Value
+              </h3>
+              <ul className="font-body text-[#555] leading-[1.7] text-left" style={{ fontSize: 'clamp(8px, 0.63vw, 12px)', marginBottom: 'clamp(8px, 0.7vw, 14px)' }}>
+                {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
+              </ul>
+              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium hover:bg-[#D54B26] hover:text-white transition-colors" style={{ padding: 'clamp(4px, 0.35vw, 7px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(9px, 0.63vw, 12px)' }}>
+                Explore More
+                <ArrowRight style={{ width: 'clamp(10px, 0.63vw, 12px)', height: 'clamp(10px, 0.63vw, 12px)' }} />
+              </button>
             </div>
-          ))}
+
+            {/* Right - Strategic Partnerships */}
+            <div className="flex-1 flex flex-col items-center text-center" style={{ padding: 'clamp(16px, 2vw, 40px) clamp(10px, 1.5vw, 30px)' }}>
+              <h3 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(14px, 1.46vw, 28px)', marginBottom: 'clamp(6px, 0.5vw, 10px)' }}>
+                Strategic Partnerships
+              </h3>
+              <ul className="font-body text-[#555] leading-[1.7] text-left" style={{ fontSize: 'clamp(8px, 0.63vw, 12px)', marginBottom: 'clamp(8px, 0.7vw, 14px)' }}>
+                {bulletPoints.map((bp) => (<li key={bp}>• {bp}</li>))}
+              </ul>
+              <button className="inline-flex items-center gap-1 border-2 border-[#D54B26] text-[#D54B26] font-body font-medium hover:bg-[#D54B26] hover:text-white transition-colors" style={{ padding: 'clamp(4px, 0.35vw, 7px) clamp(10px, 0.8vw, 16px)', fontSize: 'clamp(9px, 0.63vw, 12px)' }}>
+                Explore More
+                <ArrowRight style={{ width: 'clamp(10px, 0.63vw, 12px)', height: 'clamp(10px, 0.63vw, 12px)' }} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
