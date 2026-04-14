@@ -329,37 +329,35 @@ function ProductEcosystemSection() {
    ═══════════════════════════════════════════════════════ */
 function SustainabilitySection() {
   return (
-    <section className="relative w-full overflow-hidden" style={{ minHeight: 'clamp(350px, 34vw, 650px)' }}>
-      {/* Background Image - OurImprint.png */}
+    <section className="relative w-full overflow-hidden" style={{ minHeight: 'clamp(400px, 34vw, 660px)' }}>
+      {/* Background Image - full opacity, no overlay */}
       <div className="absolute inset-0">
         <Image src="/images/our-imprint.png" alt="" fill className="object-cover" />
-        {/* Right side overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-l from-[#FFFBEE]/90 via-[#FFFBEE]/60 to-transparent" />
       </div>
 
-      {/* Content overlay */}
-      <div className="relative max-w-[1600px] mx-auto h-full flex flex-col justify-between" style={{ padding: 'clamp(30px, 3.5vw, 66px) clamp(20px, 8.3vw, 160px)' }}>
-        {/* Top Right - Heading + Paragraphs */}
-        <div className="w-full lg:w-[50%] lg:ml-auto">
-          <h2 className="font-heading font-medium text-[#608539] leading-[1.1]" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
+      {/* Content over image */}
+      <div className="relative max-w-[1600px] mx-auto h-full flex flex-col justify-between" style={{ padding: 'clamp(30px, 3.5vw, 66px) clamp(20px, 8.3vw, 160px)', minHeight: 'clamp(400px, 34vw, 660px)' }}>
+        {/* Top Left - Heading + Paragraphs */}
+        <div className="w-full lg:w-[42%]">
+          <h2 className="font-heading font-medium text-[#608539] leading-[1.1]" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(14px, 1.4vw, 26px)' }}>
             Our imprint on the world
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 0.7vw, 14px)' }}>
-            <p className="font-body text-[#555] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px, 0.9vw, 18px)' }}>
+            <p className="font-body text-[#ccc] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
               We believe a technology company&apos;s most lasting impact isn&apos;t measured in revenue — it&apos;s measured in people developed, industries transformed, and responsibility exercised at every level of operation.
             </p>
-            <p className="font-body text-[#555] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+            <p className="font-body text-[#ccc] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
               Across eight specialized divisions, Safal Infosoft Group operates with one constant: doing business in a way that creates value for our clients, our people, and the communities we work in — today and for the long term.
             </p>
           </div>
         </div>
 
         {/* Bottom Right - "goes beyond software" + Button */}
-        <div className="w-full lg:w-[50%] lg:ml-auto flex flex-col items-end" style={{ marginTop: 'clamp(24px, 3vw, 56px)' }}>
-          <h2 className="font-heading font-medium text-[#608539] leading-[1.1] text-right" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
+        <div className="w-full lg:w-[50%] lg:ml-auto flex flex-col items-end" style={{ marginTop: 'clamp(30px, 4vw, 76px)' }}>
+          <h2 className="font-heading font-medium text-[#608539] leading-[1.1] text-right" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(14px, 1.4vw, 26px)' }}>
             goes beyond software.
           </h2>
-          <button className="inline-flex items-center gap-2 bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 18px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
+          <button className="inline-flex items-center gap-2 bg-[#D54B26] text-white font-body hover:bg-[#c04020] transition-colors" style={{ padding: 'clamp(8px, 0.6vw, 12px) clamp(16px, 1.3vw, 24px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
             Read our Sustainability Commitments
             <ArrowRight style={{ width: 'clamp(12px, 0.73vw, 14px)', height: 'clamp(12px, 0.73vw, 14px)' }} />
           </button>
