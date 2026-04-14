@@ -1,8 +1,53 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ArrowRight, Phone, Mail, Menu, X } from 'lucide-react';
+
+/* ─── Animated Counter Hook ─── */
+function useCountUp(target, duration = 2000, startOnView = true) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!startOnView) { setStarted(true); return; }
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting && !started) setStarted(true); },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [started, startOnView]);
+
+  useEffect(() => {
+    if (!started) return;
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { setCount(target); clearInterval(timer); }
+      else setCount(Math.floor(start));
+    }, 16);
+    return () => clearInterval(timer);
+  }, [started, target, duration]);
+
+  return { count, ref };
+}
+
+function AnimatedStat({ targetNum, prefix, suffix, label }) {
+  const { count, ref } = useCountUp(targetNum, 2000);
+  return (
+    <div ref={ref}>
+      <p className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(18px, 1.88vw, 36px)', marginBottom: 'clamp(8px, 0.6vw, 12px)' }}>
+        {prefix}{count.toLocaleString('en-IN')}{suffix}
+      </p>
+      <div className="border-t-2 border-[#111]" style={{ paddingTop: 'clamp(8px, 0.6vw, 12px)' }}>
+        <p className="font-body text-[#666]" style={{ fontSize: 'clamp(11px, 0.83vw, 16px)' }}>{label}</p>
+      </div>
+    </div>
+  );
+}
 
 /* ═══════════════════════════════════════════════════════
    NAVBAR
@@ -107,13 +152,6 @@ function HeroSection() {
    STATS SECTION
    ═══════════════════════════════════════════════════════ */
 function StatsSection() {
-  const stats = [
-    { value: '\u20B9174 Crore', label: 'Strategic Exit Achieved.' },
-    { value: '25,000+', label: 'Active Global Users.' },
-    { value: '15+', label: 'Countries Deployed.' },
-    { value: '500,000+', label: 'Industrial Products Managed.' },
-  ];
-
   return (
     <section className="w-full" style={{ padding: 'clamp(40px, 4.5vw, 86px) 0' }}>
       <div className="max-w-[1600px] mx-auto" style={{ padding: '0 clamp(20px, 8.3vw, 160px)' }}>
@@ -125,14 +163,10 @@ function StatsSection() {
         </p>
 
         <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: 'clamp(16px, 1.8vw, 34px)' }}>
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <div className="border-t-2 border-[#111]" style={{ paddingTop: 'clamp(10px, 0.9vw, 18px)', marginBottom: 'clamp(4px, 0.3vw, 6px)' }}>
-                <p className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(18px, 1.88vw, 36px)' }}>{stat.value}</p>
-              </div>
-              <p className="font-body text-[#666]" style={{ fontSize: 'clamp(11px, 0.83vw, 16px)' }}>{stat.label}</p>
-            </div>
-          ))}
+          <AnimatedStat targetNum={174} prefix={'\u20B9'} suffix={' Crore'} label="Strategic Exit Achieved." />
+          <AnimatedStat targetNum={25000} prefix="" suffix="+" label="Active Global Users." />
+          <AnimatedStat targetNum={15} prefix="" suffix="+" label="Countries Deployed." />
+          <AnimatedStat targetNum={500000} prefix="" suffix="+" label="Industrial Products Managed." />
         </div>
       </div>
     </section>
@@ -228,7 +262,7 @@ function GroupStructureSection() {
           </p>
         </div>
         <div className="relative w-full max-w-[1100px] mx-auto">
-          <Image src="/images/group-structure.png" alt="Safal Group Structure" width={1920} height={650} className="w-full h-auto object-contain" />
+          <Image src="/images/home-diversified.png" alt="Safal Group Structure" width={1920} height={650} className="w-full h-auto object-contain" />
         </div>
       </div>
     </section>
@@ -249,6 +283,7 @@ function ProductEcosystemSection() {
           Our Digital Product Ecosystem
         </h2>
 
+        {/* Product Tabs */}
         <div className="flex flex-wrap overflow-x-auto" style={{ gap: 'clamp(10px, 1.3vw, 24px)', marginBottom: 'clamp(14px, 1.3vw, 24px)', paddingBottom: 'clamp(8px, 0.6vw, 12px)' }}>
           {products.map((product, idx) => (
             <button
@@ -264,23 +299,26 @@ function ProductEcosystemSection() {
           ))}
         </div>
 
-        <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(14px, 1.3vw, 24px)' }}>
-          <div className="w-full lg:w-[60%] relative overflow-hidden rounded-sm" style={{ minHeight: 'clamp(200px, 20vw, 380px)' }}>
-            <Image src="/images/product-ecosystem.jpg" alt="Product" fill className="object-cover" />
-          </div>
-          <div className="w-full lg:w-[40%] flex flex-col justify-between">
-            <p className="font-body text-[#666] leading-[1.75]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
-              Lorem ipsum dolor sit amet consectetur. Neque id eu cras quam. Tincidunt iaculis pulvinar tellus neque vitae viverra augue nec. Massa odio dignissim sit in dis ac. Id adipiscing faucibus urna senectus a aliquam magna nulla faucibus. Arcu arcu auctor imperdiet nisl amet. In non platea morbi facilisis consectetur nunc maecenas. Sit porta nulla sed non in nibh tellus nisl.
-            </p>
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="img-placeholder rounded" style={{ height: 'clamp(28px, 1.88vw, 36px)', width: 'clamp(100px, 7.8vw, 150px)', fontSize: '10px' }}>Product Logo</div>
-              <button className="inline-flex items-center gap-2 bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 18px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
-                Visit our Product
-                <ArrowRight style={{ width: 'clamp(12px, 0.73vw, 14px)', height: 'clamp(12px, 0.73vw, 14px)' }} />
-              </button>
-            </div>
-          </div>
+        {/* Product Image - full width */}
+        <div className="w-full relative overflow-hidden rounded-sm" style={{ minHeight: 'clamp(200px, 22vw, 420px)', marginBottom: 'clamp(14px, 1.3vw, 24px)' }}>
+          <Image src="/images/digital-product.png" alt={products[activeProduct]} fill className="object-cover" />
         </div>
+
+        {/* Logo + Button Row */}
+        <div className="flex flex-wrap items-center justify-between" style={{ gap: 'clamp(10px, 1vw, 18px)', marginBottom: 'clamp(14px, 1.3vw, 24px)' }}>
+          <div className="relative" style={{ height: 'clamp(24px, 2vw, 38px)', width: 'clamp(100px, 8vw, 160px)' }}>
+            <Image src="/images/datanote-logo.png" alt="Datanote" fill className="object-contain object-left" />
+          </div>
+          <button className="inline-flex items-center gap-2 bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 18px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
+            Visit our Product
+            <ArrowRight style={{ width: 'clamp(12px, 0.73vw, 14px)', height: 'clamp(12px, 0.73vw, 14px)' }} />
+          </button>
+        </div>
+
+        {/* Description */}
+        <p className="font-body text-[#666] leading-[1.75] max-w-[1000px]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+          Lorem ipsum dolor sit amet consectetur. Neque id eu cras quam. Tincidunt iaculis pulvinar tellus neque vitae viverra augue nec. Massa odio dignissim sit in dis ac. Id adipiscing faucibus urna senectus a aliquam magna nulla faucibus. Arcu arcu auctor imperdiet nisl amet. In non platea morbi facilisis consectetur nunc maecenas. Sit porta nulla sed non in nibh tellus nisl.
+        </p>
       </div>
     </section>
   );
@@ -291,37 +329,40 @@ function ProductEcosystemSection() {
    ═══════════════════════════════════════════════════════ */
 function SustainabilitySection() {
   return (
-    <section className="relative w-full overflow-hidden" style={{ padding: 'clamp(30px, 3.5vw, 66px) 0' }}>
-      <div className="absolute inset-0 opacity-[0.06]">
-        <Image src="/images/leaf-veins.jpg" alt="" fill className="object-cover" />
+    <section className="relative w-full overflow-hidden" style={{ minHeight: 'clamp(350px, 34vw, 650px)' }}>
+      {/* Background Image - OurImprint.png */}
+      <div className="absolute inset-0">
+        <Image src="/images/our-imprint.png" alt="" fill className="object-cover" />
+        {/* Right side overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-l from-[#FFFBEE]/90 via-[#FFFBEE]/60 to-transparent" />
       </div>
-      <div className="relative max-w-[1600px] mx-auto" style={{ padding: '0 clamp(20px, 8.3vw, 160px)' }}>
-        <div className="flex flex-col lg:flex-row items-start" style={{ gap: 'clamp(16px, 2.5vw, 48px)' }}>
-          <div className="w-full lg:w-[40%]">
-            <h2 className="font-heading font-medium text-[#608539] leading-[1.1]" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
-              Our imprint on the world
-            </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 0.7vw, 14px)' }}>
-              <p className="font-body text-[#666] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
-                We believe a technology company&apos;s most lasting impact isn&apos;t measured in revenue — it&apos;s measured in people developed, industries transformed, and responsibility exercised at every level of operation.
-              </p>
-              <p className="font-body text-[#666] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
-                Across eight specialized divisions, Safal Infosoft Group operates with one constant: doing business in a way that creates value for our clients, our people, and the communities we work in — today and for the long term.
-              </p>
-            </div>
+
+      {/* Content overlay */}
+      <div className="relative max-w-[1600px] mx-auto h-full flex flex-col justify-between" style={{ padding: 'clamp(30px, 3.5vw, 66px) clamp(20px, 8.3vw, 160px)' }}>
+        {/* Top Right - Heading + Paragraphs */}
+        <div className="w-full lg:w-[50%] lg:ml-auto">
+          <h2 className="font-heading font-medium text-[#608539] leading-[1.1]" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
+            Our imprint on the world
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 0.7vw, 14px)' }}>
+            <p className="font-body text-[#555] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+              We believe a technology company&apos;s most lasting impact isn&apos;t measured in revenue — it&apos;s measured in people developed, industries transformed, and responsibility exercised at every level of operation.
+            </p>
+            <p className="font-body text-[#555] leading-[1.7]" style={{ fontSize: 'clamp(11px, 0.78vw, 15px)' }}>
+              Across eight specialized divisions, Safal Infosoft Group operates with one constant: doing business in a way that creates value for our clients, our people, and the communities we work in — today and for the long term.
+            </p>
           </div>
-          <div className="w-full lg:w-[60%] flex flex-col items-end">
-            <h2 className="font-heading font-medium text-[#608539] leading-[1.1] text-right" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
-              goes beyond software.
-            </h2>
-            <div className="relative" style={{ width: 'clamp(180px, 20vw, 380px)', height: 'clamp(180px, 20vw, 380px)' }}>
-              <Image src="/images/green-fingerprint.jpg" alt="Sustainability" fill className="object-contain" />
-            </div>
-            <button className="inline-flex items-center gap-2 bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 18px)', fontSize: 'clamp(12px, 0.83vw, 16px)', marginTop: 'clamp(12px, 1.2vw, 22px)' }}>
-              Read our Sustainability Commitments
-              <ArrowRight style={{ width: 'clamp(12px, 0.73vw, 14px)', height: 'clamp(12px, 0.73vw, 14px)' }} />
-            </button>
-          </div>
+        </div>
+
+        {/* Bottom Right - "goes beyond software" + Button */}
+        <div className="w-full lg:w-[50%] lg:ml-auto flex flex-col items-end" style={{ marginTop: 'clamp(24px, 3vw, 56px)' }}>
+          <h2 className="font-heading font-medium text-[#608539] leading-[1.1] text-right" style={{ fontSize: 'clamp(22px, 2.71vw, 52px)', marginBottom: 'clamp(12px, 1.2vw, 22px)' }}>
+            goes beyond software.
+          </h2>
+          <button className="inline-flex items-center gap-2 bg-[#111] text-[#D54B26] font-body hover:bg-[#222] transition-colors" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 18px)', fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
+            Read our Sustainability Commitments
+            <ArrowRight style={{ width: 'clamp(12px, 0.73vw, 14px)', height: 'clamp(12px, 0.73vw, 14px)' }} />
+          </button>
         </div>
       </div>
     </section>
