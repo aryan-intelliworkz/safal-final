@@ -1,109 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ArrowRight, Phone, Mail, Menu, X } from 'lucide-react';
-
-/* ─── Animated Counter Hook ─── */
-function useCountUp(target, duration = 2000, startOnView = true) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!startOnView) { setStarted(true); return; }
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !started) setStarted(true); },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [started, startOnView]);
-
-  useEffect(() => {
-    if (!started) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [started, target, duration]);
-
-  return { count, ref };
-}
-
-function AnimatedStat({ targetNum, prefix, suffix, label }) {
-  const { count, ref } = useCountUp(targetNum, 2000);
-  return (
-    <div ref={ref}>
-      <p className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(18px, 1.88vw, 36px)', marginBottom: 'clamp(8px, 0.6vw, 12px)' }}>
-        {prefix}{count.toLocaleString('en-IN')}{suffix}
-      </p>
-      <div className="border-t-2 border-[#111]" style={{ paddingTop: 'clamp(8px, 0.6vw, 12px)' }}>
-        <p className="font-body text-[#666]" style={{ fontSize: 'clamp(11px, 0.83vw, 16px)' }}>{label}</p>
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════
-   NAVBAR
-   ═══════════════════════════════════════════════════════ */
-function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const navItems = [
-    { label: 'The Company', hasDropdown: true },
-    { label: 'Our Division', hasDropdown: true },
-    { label: 'Industries We Serve', hasDropdown: true },
-    { label: 'Partnerships', hasDropdown: true },
-    { label: 'Insights', hasDropdown: true },
-    { label: 'Investors', hasDropdown: true },
-  ];
-
-  return (
-    <nav className="w-full z-50 flex-shrink-0">
-      <div className="max-w-[1800px] mx-auto flex items-center justify-between px-5 md:px-10 lg:px-[60px] h-[60px] md:h-[70px] lg:h-[80px]">
-        {/* Logo */}
-        <div className="relative flex-shrink-0" style={{ width: 'clamp(110px, 10vw, 190px)', height: 'clamp(36px, 3.2vw, 60px)' }}>
-          <Image src="/images/header-logo.png" alt="Safal Infosoft Limited" fill className="object-contain object-left" priority />
-        </div>
-
-        {/* Desktop Nav Links */}
-        <div className="hidden xl:flex items-center" style={{ gap: 'clamp(12px, 1.3vw, 24px)' }}>
-          {navItems.map((item) => (
-            <button key={item.label} className="flex items-center gap-1 text-white font-body hover:opacity-80 transition-opacity whitespace-nowrap" style={{ fontSize: 'clamp(12px, 0.83vw, 16px)' }}>
-              {item.label}
-              {item.hasDropdown && <ChevronDown size={12} className="text-white opacity-70" />}
-            </button>
-          ))}
-        </div>
-
-        {/* CTA Button - xl+ only */}
-        <button className="hidden xl:flex items-center bg-[#D54B26] text-white font-body font-medium hover:bg-[#c04020] transition-colors whitespace-nowrap" style={{ padding: 'clamp(6px, 0.5vw, 10px) clamp(14px, 1.2vw, 22px)', fontSize: 'clamp(12px, 0.78vw, 15px)' }}>
-          Get In Touch
-        </button>
-
-        {/* Mobile Menu Toggle */}
-        <button className="xl:hidden text-white p-2" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      {mobileOpen && (
-        <div className="xl:hidden bg-[#111] border-t border-white/10 px-5 py-3 space-y-2">
-          {navItems.map((item) => (
-            <button key={item.label} className="block text-white text-[14px] font-body w-full text-left py-2 border-b border-white/5">{item.label}</button>
-          ))}
-          <button className="w-full bg-[#D54B26] text-white px-5 py-2.5 text-[14px] font-body font-medium mt-2">Get In Touch</button>
-        </div>
-      )}
-    </nav>
-  );
-}
-
+import { ArrowRight } from 'lucide-react';
+import AnimatedStat from '@/components/AnimatedStat';
 /* ═══════════════════════════════════════════════════════
    HERO SECTION - Header + Hero = 100vh
    ═══════════════════════════════════════════════════════ */
@@ -113,11 +13,6 @@ function HeroSection() {
       <div className="absolute inset-0 grid-pattern" />
       <div className="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-[#111] to-transparent z-[1]" />
       <div className="absolute bottom-0 left-0 w-full h-[200px] bg-gradient-to-t from-[#111] to-transparent z-[1]" />
-
-      {/* Navbar inside hero so both fit in 100vh */}
-      <div className="relative z-[2]">
-        <Navbar />
-      </div>
 
       {/* Hero Content - fills remaining space */}
       <div className="relative z-[2] flex-1 max-w-[1800px] mx-auto w-full px-5 md:px-10 lg:px-[60px] flex items-center">
@@ -731,7 +626,6 @@ export default function Home() {
       <GlobalPresenceSection />
       <InvestorSection />
       <CTASection />
-      <Footer />
     </main>
   );
 }
