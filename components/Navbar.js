@@ -21,7 +21,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`w-full z-50 flex-shrink-0 ${!isHome ? 'bg-[#111]' : ''}`}>
+    <nav className="w-full z-50 flex-shrink-0 bg-[#111]">
       <div className="max-w-[1800px] mx-auto flex items-center justify-between px-5 md:px-10 lg:px-[60px] h-[60px] md:h-[70px] lg:h-[80px]">
         {/* Logo */}
         <Link href="/" className="relative flex-shrink-0 block" style={{ width: 'clamp(110px, 10vw, 190px)', height: 'clamp(36px, 3.2vw, 60px)' }}>
