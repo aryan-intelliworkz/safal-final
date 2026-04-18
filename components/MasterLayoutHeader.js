@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function MasterLayoutHeader({ title, description, rightImage }) {
   return (
-    <section className="relative w-full min-h-[50vh] md:min-h-[450px] lg:min-h-[500px] bg-[#0A0A0A] overflow-hidden flex flex-col justify-center mt-[60px] md:mt-[70px] lg:mt-[80px]">
+    <section className="relative w-full min-h-[50vh] md:min-h-[450px] lg:min-h-[500px] bg-[#0A0A0A] overflow-hidden flex flex-col justify-center">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image src="/images/MasterLayoutBG.png" alt="Background Grid" fill className="object-cover opacity-80" priority />
@@ -28,7 +28,7 @@ export default function MasterLayoutHeader({ title, description, rightImage }) {
         {/* Right Content */}
         {rightImage && (
           <div className="w-full md:w-1/2 lg:w-6/12 flex justify-center md:justify-end">
-            <div className="relative w-full aspect-video md:aspect-[4/3] max-w-[600px]">
+            <div className="relative w-full aspect-[4/3] max-w-[280px] md:max-w-[380px] lg:max-w-[420px]">
               <Image src={rightImage} alt="Header Graphic" fill className="object-contain object-center md:object-right" priority />
             </div>
           </div>

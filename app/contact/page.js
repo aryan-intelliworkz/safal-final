@@ -8,7 +8,7 @@ export default function ContactPage() {
       <MasterLayoutHeader 
         title={<>Initiate the Next Phase<br />of Growth.</>}
         description="Whether you require robust enterprise infrastructure, visionary creative strategy, or elite financial advisory, our global team is ready to engineer your solution. Connect with Safal Group to begin."
-        rightImage="/images/MasterContact.png"
+        rightImage="/images/MasterLayoutBG.png"
       />
 
       {/* Middle Form Section */}

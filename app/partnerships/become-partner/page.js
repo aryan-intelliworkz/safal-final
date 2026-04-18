@@ -1,64 +1,238 @@
-import PageHeader from '@/components/PageHeader';
-import SectionTitle from '@/components/SectionTitle';
+import MasterLayoutHeader from '@/components/MasterLayoutHeader';
+import Image from 'next/image';
 
 export default function BecomePartnerPage() {
+  const ecosystemCards = [
+    {
+      step: '01 / TECH',
+      title: 'Technology Integrations',
+      desc: 'Integrate your backend infrastructure directly into our proprietary platforms for unified, massive-scale deployment models designed for rapid enterprise sync.',
+      imgText: 'Scales Icon'
+    },
+    {
+      step: '02 / GO-TO-MARKET',
+      title: 'Channels & Go-To-Market',
+      desc: 'Leverage our established global footprint to accelerate product adoption in the US, UAE, and Indian subcontinents. Co-sell and distribute through our primary global vendor ecosystem.',
+      imgText: 'Padlock Icon'
+    },
+    {
+      step: '03 / VENTURES',
+      title: 'Venture & Co-Innovation',
+      desc: 'Partner directly with our Innovation Labs to develop disruptive IP and co-fund new tech stacks. We invest in the platforms that will redefine our shared industries.',
+      imgText: 'Cube Icon'
+    },
+    {
+      step: '04 / EXPERTS',
+      title: 'Implementation Experts',
+      desc: 'Become a certified agency partner. Deploy Safal architectures for your own clientele. Receive comprehensive support and lead-generation routing from our internal teams.',
+      imgText: 'Rings Icon'
+    }
+  ];
+
+  const blueprintCards = [
+    {
+      step: '01',
+      title: 'Initiation',
+      desc: 'Initial alignment on technical infrastructure and joint market strategy. We establish clear KPIs and mutual objectives before finalizing any strategic integration.'
+    },
+    {
+      step: '02',
+      title: 'Architecture',
+      desc: 'Our engineering and infrastructure teams will directly integrate with their counterparts to define integration protocols and custom deployment strategies.'
+    },
+    {
+      step: '03',
+      title: 'Integration',
+      desc: 'The integration is executed. Our operations directors ensure seamless syncing between both tech stacks with absolutely no latency and zero downtime transitions.'
+    },
+    {
+      step: '04',
+      title: 'Global Scaling',
+      desc: 'Rapid global deployment against shared objectives. Once integrated, our joint GTM forces execute simultaneous campaigns across identified verticals.'
+    }
+  ];
+
   return (
-    <main className="w-full bg-[#FFFBEE] min-h-screen">
-      <PageHeader 
-        title="Become a Partner" 
-        description="Join forces with Safal Group to deliver exponential value to global enterprises."
+    <main className="w-full bg-[#FFFBEE] min-h-screen font-body overflow-hidden">
+      <MasterLayoutHeader 
+        title={<>Force Multipliers for Global<br />Scale</>}
+        description="A Safal Partnership is not just an agreement—it is a strategic synthesis of infrastructure, distribution networks, and domain expertise capable of dominating new market verticals."
+        rightImage="/images/MasterLayoutBG.png" 
       />
 
-      <section className="w-full py-16 md:py-24 max-w-[1600px] mx-auto px-5 md:px-10 lg:px-[160px]">
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
-          <div className="w-full lg:w-1/2">
-            <SectionTitle title="Co-create the future" subtitle="Partnership Inquiry" />
-            <p className="font-body text-[#555] leading-relaxed mb-6">
-              We are actively looking for system integrators, technology vendors, and domain consultants who share our obsession with quality and scale.
-            </p>
-            <div className="bg-white p-8 border border-[#EEE] mt-8">
-              <h4 className="font-heading font-semibold text-[#111] mb-2">Partnership Criteria</h4>
-              <ul className="list-disc pl-5 font-body text-[#555] space-y-2">
-                <li>Proven track record in enterprise deployment</li>
-                <li>Alignment with our core engineering values</li>
-                <li>Complementary technology stack or domain expertise</li>
-              </ul>
+      {/* A Borderless Innovation Network (Reused) */}
+      <section className="w-full py-16 md:py-24 max-w-[1240px] mx-auto px-5 md:px-10 lg:px-[60px] text-center">
+        <div className="mb-12">
+          <h2 className="font-heading font-semibold text-[#111] leading-tight mb-6" style={{ fontSize: 'clamp(28px, 3.5vw, 42px)' }}>
+            A Borderless Innovation Network
+          </h2>
+          <p className="font-body text-[#555] leading-relaxed max-w-[1000px] mx-auto" style={{ fontSize: 'clamp(15px, 1.1vw, 18px)' }}>
+            Strategic scale requires global reach. Our partnership ecosystem spans across North America, the Middle East, and Asia. By aligning our deep-tech infrastructure with your domain expertise, we create a synchronized, borderless network capable of deploying enterprise-grade solutions anywhere in the world.
+          </p>
+        </div>
+        <div className="w-full max-w-[900px] mx-auto flex items-center justify-center opacity-60">
+            {/* Dot World Map Placeholder */}
+            <div className="w-full aspect-[21/9] border border-dashed border-[#CCC] rounded bg-[#FFFBEE]/40 flex items-center justify-center mix-blend-multiply">
+               <span className="text-[#888] font-medium tracking-wider text-xs uppercase px-2 shadow-sm z-10 text-center bg-white/60 backdrop-blur rounded p-2 border border-[#EBEBEB]">
+                 Dotted World Map Sketch
+               </span>
             </div>
+        </div>
+      </section>
+
+      {/* Collaborative Ecosystems (Reused) */}
+      <section className="w-full py-16 md:py-24 max-w-[1400px] mx-auto px-5 md:px-10 lg:px-[60px]">
+        <div className="text-center mb-16">
+          <h2 className="font-heading font-semibold text-[#111] leading-tight mb-4" style={{ fontSize: 'clamp(28px, 3.5vw, 42px)' }}>
+            Collaborative Ecosystems
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {ecosystemCards.map((card, idx) => (
+            <div key={idx} className="bg-white p-8 md:p-10 border border-[#E1DBCA] flex flex-col items-start hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-1.5 bg-[#D54B26]"></div>
+                <span className="text-[#888] font-semibold text-[10px] tracking-widest uppercase">{card.step}</span>
+              </div>
+              <div className="w-full aspect-[4/3] bg-black/[0.02] border border-[#F0F0F0] rounded mb-8 flex items-center justify-center">
+                 <span className="text-xs text-[#666] tracking-widest uppercase font-semibold">{card.imgText}</span>
+              </div>
+              <h3 className="font-heading font-semibold text-[#111] text-lg mb-4">{card.title}</h3>
+              <p className="font-body text-[#555] text-sm leading-[1.8]">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* The Safal Partnership Matrix. (Reused) */}
+      <section className="relative w-full py-24 md:py-32 overflow-hidden flex flex-col items-center justify-center border-y border-[#EBE7D8]">
+         <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+            <div className="absolute w-[1000px] h-[1000px] rounded-full border border-dashed border-[#CCC]"></div>
+            <div className="absolute w-[800px] h-[800px] rounded-full border border-[#D54B26]/30"></div>
+            <div className="absolute w-[600px] h-[600px] rounded-full border border-dashed border-[#CCC]"></div>
+            <div className="absolute w-[400px] h-[400px] rounded-full border border-[#D54B26]/20"></div>
+         </div>
+
+         <div className="absolute top-[20%] left-[25%] lg:left-[35%] w-16 h-16 bg-white shadow-sm border border-[#EEE] flex items-center justify-center text-[10px] text-center text-[#555] rounded">Cube icon</div>
+         <div className="absolute top-[15%] right-[25%] lg:right-[35%] w-20 h-20 bg-white shadow-sm border border-[#EEE] flex items-center justify-center text-[10px] text-center text-[#555] rounded-full">Compass</div>
+         <div className="absolute bottom-[10%] left-[30%] lg:left-[40%] w-20 h-20 bg-white shadow-sm border border-[#EEE] flex items-center justify-center text-[10px] text-center text-[#555] rounded-full">Rocket</div>
+         <div className="absolute bottom-[20%] right-[30%] lg:right-[38%] w-16 h-16 bg-white shadow-sm border border-[#EEE] flex items-center justify-center text-[10px] text-center text-[#555] rounded">Data Node</div>
+
+         <div className="relative z-10 text-center max-w-[700px] px-5 bg-[#FFFBEE]/90 backdrop-blur-sm py-12 rounded-3xl">
+            <h2 className="font-heading font-semibold text-[#111] leading-tight mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}>
+              The Safal<br />Partnership Matrix.
+            </h2>
+            <p className="font-body text-[#555] leading-relaxed mb-10 mx-auto max-w-[550px]" style={{ fontSize: 'clamp(15px, 1.1vw, 18px)' }}>
+              A partnership with the Safal Group is not transactional—it is deeply symbiotic. We leverage our robust technical architecture and enterprise relationships to forge high-impact market monopolies. Find out exactly where you fit in our global matrix today.
+            </p>
+            <button className="bg-[#D54B26] text-white px-8 py-3.5 font-body font-medium hover:bg-[#111] transition-colors rounded">
+              Apply to Partner Network
+            </button>
+         </div>
+      </section>
+
+      {/* The Alignment Blueprint */}
+      <section className="w-full py-24 px-5 md:px-10 lg:px-[60px]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(28px, 3.5vw, 42px)' }}>
+              The Alignment Blueprint.
+            </h2>
+            <p className="font-body text-[#555] uppercase tracking-wider text-sm font-medium max-w-[800px] mx-auto">
+              High-value partnerships deserve rigorous planning and execution. This is how we onboard strategic partners into our operational ecosystem securely and flawlessly.
+            </p>
           </div>
-          <div className="w-full lg:w-1/2 bg-white p-8 md:p-12 border border-[#EEE] shadow-sm">
-            <h3 className="font-heading font-semibold text-[#111] text-2xl mb-6">Partnership Application</h3>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="font-body text-[#111] text-sm font-medium mb-2 block">Company Name</label>
-                  <input type="text" className="w-full border border-[#CCC] p-3 font-body bg-[#FAFAFA] focus:outline-none focus:border-[#D54B26]" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 lg:divide-x divide-[#E1DBCA]">
+            {blueprintCards.map((card, idx) => (
+              <div key={idx} className="bg-transparent flex flex-col items-center text-center p-8 lg:p-12 relative overflow-hidden group">
+                <div className="flex items-center justify-center gap-2 mb-6">
+                  <div className="w-1.5 h-1.5 bg-[#D54B26]"></div>
+                  <span className="text-[#D54B26] font-semibold text-[10px] tracking-widest uppercase">Phase</span>
                 </div>
-                <div>
-                  <label className="font-body text-[#111] text-sm font-medium mb-2 block">Website URL</label>
-                  <input type="text" className="w-full border border-[#CCC] p-3 font-body bg-[#FAFAFA] focus:outline-none focus:border-[#D54B26]" />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="font-body text-[#111] text-sm font-medium mb-2 block">Contact Person</label>
-                  <input type="text" className="w-full border border-[#CCC] p-3 font-body bg-[#FAFAFA] focus:outline-none focus:border-[#D54B26]" />
-                </div>
-                <div>
-                  <label className="font-body text-[#111] text-sm font-medium mb-2 block">Email Address</label>
-                  <input type="email" className="w-full border border-[#CCC] p-3 font-body bg-[#FAFAFA] focus:outline-none focus:border-[#D54B26]" />
+                <h3 className="font-heading font-semibold text-[#111] text-xl mb-4">{card.title}</h3>
+                <p className="font-body text-[#555] text-sm leading-[1.8] mb-12">
+                  {card.desc}
+                </p>
+                {/* Dashed semi-arch */}
+                <div className="absolute -bottom-16 w-[180px] h-[180px] rounded-full border border-dashed border-[#D54B26]/30 flex items-start justify-center group-hover:border-[#D54B26]/80 transition-colors">
+                   <div className="mt-[20px] bg-[#FFFBEE] w-7 h-7 rounded-full border border-[#D54B26] flex items-center justify-center text-[10px] text-[#D54B26] font-bold">
+                     {card.step}
+                   </div>
                 </div>
               </div>
-              <div>
-                <label className="font-body text-[#111] text-sm font-medium mb-2 block">Partnership Proposal / Value Hypothesis</label>
-                <textarea rows="4" className="w-full border border-[#CCC] p-3 font-body bg-[#FAFAFA] focus:outline-none focus:border-[#D54B26] resize-none"></textarea>
-              </div>
-              <button type="button" className="bg-[#111] text-white px-8 py-3 font-body font-medium hover:bg-[#D54B26] transition-colors w-full md:w-auto">
-                Submit Inquiry
-              </button>
-            </form>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Form Section */}
+      <section className="w-full py-16 md:py-24 max-w-[1000px] mx-auto px-5 md:px-10 lg:px-[60px] border-t border-[#E1DBCA]">
+        <div className="mb-12">
+          <h2 className="font-heading font-semibold text-[#111] leading-tight" style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}>
+            Submit your corporate details to our Alliance Directors
+          </h2>
+        </div>
+
+        <form className="space-y-8 font-body">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            
+            <div className="space-y-8">
+              <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative">
+                <label className="text-[#333] font-semibold text-sm block mb-1">Full Name</label>
+                <input type="text" placeholder="e.g. John Doe" className="w-full bg-transparent outline-none text-[#555] text-[15px] placeholder:text-[#999]" />
+              </div>
+              <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative">
+                <label className="text-[#333] font-semibold text-sm block mb-1">Phone Number</label>
+                <input type="text" placeholder="e.g. +1 (800) 000-0000" className="w-full bg-transparent outline-none text-[#555] text-[15px] placeholder:text-[#999]" />
+              </div>
+              <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative">
+                <label className="text-[#333] font-semibold text-sm block mb-1">Website URL</label>
+                <input type="text" placeholder="e.g. www.safal.com" className="w-full bg-transparent outline-none text-[#555] text-[15px] placeholder:text-[#999]" />
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative">
+                <label className="text-[#333] font-semibold text-sm block mb-1">Corporate Email</label>
+                <input type="email" placeholder="e.g. info@safal-group.com" className="w-full bg-transparent outline-none text-[#555] text-[15px] placeholder:text-[#999]" />
+              </div>
+              <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative">
+                <label className="text-[#333] font-semibold text-sm block mb-1">Company Name</label>
+                <input type="text" placeholder="e.g. Safal Group" className="w-full bg-transparent outline-none text-[#555] text-[15px] placeholder:text-[#999]" />
+              </div>
+              <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative">
+                <label className="text-[#333] font-semibold text-sm block mb-1">Partnership Type</label>
+                <select className="w-full bg-transparent outline-none text-[#555] text-[15px] appearance-none cursor-pointer">
+                  <option value="" disabled selected>e.g. Vendor</option>
+                  <option value="vendor">Vendor</option>
+                  <option value="agency">Agency Partner</option>
+                  <option value="integrator">Systems Integrator</option>
+                  <option value="investor">Strategic Investor</option>
+                </select>
+                <div className="absolute right-0 bottom-2 pointer-events-none text-[#999]">
+                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="w-full border-b border-[#CCC] pb-2 focus-within:border-[#D54B26] transition-colors relative pt-4">
+            <label className="text-[#333] font-semibold text-sm block mb-1">Executive Summary</label>
+            <p className="text-xs text-[#888] mb-3">Briefly detail your primary value-proposition and the scope of partnership you envision with Safal Group.</p>
+            <textarea rows="3" className="w-full bg-transparent outline-none text-[#555] text-[15px] resize-none"></textarea>
+          </div>
+
+          <div className="pt-6">
+            <button type="button" className="bg-transparent border border-[#D54B26] text-[#D54B26] px-10 py-3 font-semibold text-sm tracking-wide rounded-sm hover:bg-[#D54B26] hover:text-white transition-colors">
+              Submit
+            </button>
+          </div>
+        </form>
+      </section>
+
     </main>
   );
 }
