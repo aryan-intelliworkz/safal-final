@@ -1,5 +1,6 @@
 import MasterLayoutHeader from '@/components/MasterLayoutHeader';
 import SectionTitle from '@/components/SectionTitle';
+import DynamicOrbitSection from '@/components/DynamicOrbitSection';
 
 export default function StoryVisionPage() {
   const dnaCards = [
@@ -120,32 +121,17 @@ export default function StoryVisionPage() {
       </section>
 
       {/* Driven by Intelligence */}
-      <section className="relative w-full py-24 md:py-32 overflow-hidden flex items-center justify-center">
-         {/* Circular Background Grid Placeholder */}
-         <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-            <div className="w-[800px] h-[800px] rounded-full border border-[#D54B26]/30"></div>
-            <div className="absolute w-[600px] h-[600px] rounded-full border border-[#CCC]"></div>
-            <div className="absolute w-[400px] h-[400px] rounded-full border border-[#D54B26]/20"></div>
-         </div>
-
-         <div className="relative z-10 text-center max-w-[600px] px-5 bg-[#FFFBEE]/80 backdrop-blur-sm py-12">
-            <h2 className="font-heading font-semibold text-[#111] leading-tight mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}>
-              Driven by<br/>Intelligence.
-            </h2>
-            <p className="font-body text-[#555] leading-relaxed mb-8">
-              Autonomy is not an outcome; it is the fundamental baseline. We engineer automated cognitive loops into every software product.
-            </p>
-            <button className="bg-[#D54B26] text-white px-8 py-3.5 font-body font-medium hover:bg-[#111] transition-colors rounded">
-              Connect With Us
-            </button>
-         </div>
-
-         {/* Orbiting Elements Placeholders */}
-         <div className="absolute top-[20%] left-[20%] w-20 h-20 bg-white shadow-lg flex items-center justify-center text-[10px] text-center text-[#888] rounded">Box Icon</div>
-         <div className="absolute top-[30%] right-[25%] w-24 h-24 bg-white shadow-lg flex items-center justify-center text-[10px] text-center text-[#888] rounded-full">Compass</div>
-         <div className="absolute bottom-[20%] left-[30%] w-16 h-16 bg-white shadow-lg flex items-center justify-center text-[10px] text-center text-[#888] rounded-full">Rocket</div>
-         <div className="absolute bottom-[30%] right-[30%] w-20 h-20 bg-white shadow-lg flex items-center justify-center text-[10px] text-center text-[#888] rounded">Data</div>
-      </section>
+      <DynamicOrbitSection>
+        <h2 className="font-heading font-semibold text-[#111] leading-tight mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}>
+          Driven by<br/>Intelligence.
+        </h2>
+        <p className="font-body text-[#555] leading-relaxed mb-8">
+          Autonomy is not an outcome; it is the fundamental baseline. We engineer automated cognitive loops into every software product.
+        </p>
+        <button className="bg-[#D54B26] text-white px-8 py-3.5 font-body font-medium hover:bg-[#111] transition-colors rounded">
+          Connect With Us
+        </button>
+      </DynamicOrbitSection>
 
       {/* Engineering Global Impact */}
       <section className="w-full py-16 md:py-24 max-w-[1600px] mx-auto px-5 md:px-10 lg:px-[60px]">

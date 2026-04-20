@@ -1,5 +1,6 @@
 import MasterLayoutHeader from '@/components/MasterLayoutHeader';
 import Image from 'next/image';
+import DynamicOrbitSection from '@/components/DynamicOrbitSection';
 
 export default function StrategicPartnershipsPage() {
   const ecosystemCards = [
@@ -83,33 +84,17 @@ export default function StrategicPartnershipsPage() {
       </section>
 
       {/* The Safal Partnership Matrix. */}
-      <section className="relative w-full py-24 md:py-32 overflow-hidden flex flex-col items-center justify-center border-y border-[#EBE7D8]">
-         {/* Circular Background Grid Placeholder */}
-         <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-            <div className="absolute w-[1000px] h-[1000px] rounded-full border border-dashed border-[#CCC]"></div>
-            <div className="absolute w-[800px] h-[800px] rounded-full border border-[#D54B26]/30"></div>
-            <div className="absolute w-[600px] h-[600px] rounded-full border border-dashed border-[#CCC]"></div>
-            <div className="absolute w-[400px] h-[400px] rounded-full border border-[#D54B26]/20"></div>
-         </div>
-
-         {/* Orbiting Elements Placeholders (simulated) */}
-         <div className="absolute top-[20%] left-[25%] lg:left-[35%] w-16 h-16 bg-white shadow flex items-center justify-center text-[10px] text-center text-[#555] rounded">Cube System</div>
-         <div className="absolute top-[15%] right-[25%] lg:right-[35%] w-20 h-20 bg-white shadow flex items-center justify-center text-[10px] text-center text-[#555] rounded-full">Compass</div>
-         <div className="absolute bottom-[10%] left-[30%] lg:left-[40%] w-20 h-20 bg-white shadow flex items-center justify-center text-[10px] text-center text-[#555] rounded-full">Rocket</div>
-         <div className="absolute bottom-[20%] right-[30%] lg:right-[38%] w-16 h-16 bg-white shadow flex items-center justify-center text-[10px] text-center text-[#555] rounded">Diamond Grid</div>
-
-         <div className="relative z-10 text-center max-w-[700px] px-5 bg-[#FFFBEE]/90 backdrop-blur-sm py-12 rounded-3xl">
-            <h2 className="font-heading font-semibold text-[#111] leading-tight mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}>
-              The Safal<br />Partnership Matrix.
-            </h2>
-            <p className="font-body text-[#555] leading-relaxed mb-10 mx-auto max-w-[550px]" style={{ fontSize: 'clamp(15px, 1.1vw, 18px)' }}>
-              A partnership with the Safal Group is not transactional—it is deeply symbiotic. We leverage our robust technical architecture and enterprise relationships to forge high-impact market monopolies. Find out exactly where you fit in our global matrix today.
-            </p>
-            <button className="bg-[#D54B26] text-white px-8 py-3.5 font-body font-medium hover:bg-[#111] transition-colors rounded">
-              Apply to Partner Network
-            </button>
-         </div>
-      </section>
+      <DynamicOrbitSection>
+        <h2 className="font-heading font-semibold text-[#111] leading-tight mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}>
+          The Safal<br />Partnership Matrix.
+        </h2>
+        <p className="font-body text-[#555] leading-relaxed mb-10 mx-auto max-w-[550px]" style={{ fontSize: 'clamp(15px, 1.1vw, 18px)' }}>
+          A partnership with the Safal Group is not transactional—it is deeply symbiotic. We leverage our robust technical architecture and enterprise relationships to forge high-impact market monopolies. Find out exactly where you fit in our global matrix today.
+        </p>
+        <button className="bg-[#D54B26] text-white px-8 py-3.5 font-body font-medium hover:bg-[#111] transition-colors rounded">
+          Apply to Partner Network
+        </button>
+      </DynamicOrbitSection>
 
       {/* The DNA of a Strategic Ally */}
       <section className="w-full py-24 px-5 md:px-10 lg:px-[60px]">
